@@ -1,0 +1,40 @@
+id,question_text,option_1,option_2,option_3,option_4,difficulty,category,right_answer
+1,What is the output of the following code snippet: print(2**3)?,6,8,4,9,easy,coding,8
+2,What planet is known as the Red Planet?,Mars,Jupiter,Saturn,Venus,easy,science,Mars
+3,"If all bloops are razzies and all razzies are lazzies, are all bloops lazzies?",Yes,No,Cannot be determined,Sometimes,hard,logical reasoning,Yes
+4,"What will be the output of: x = [1, 2, 3]; print(x[1])?",2,3,1,0,easy,coding,2
+5,Which gas is most abundant in Earth's atmosphere?,Oxygen,Nitrogen,Carbon Dioxide,Argon,medium,science,Nitrogen
+6,"Which one of the following is a prime number: 4, 6, 8, 7?",4,6,7,7,medium,logical reasoning,7
+7,Solve for x: 2x + 3 = 7,x = 2,x = 1,x = -1,x = 0,medium,logical reasoning,2
+8,What is the atomic number of Helium?,1,2,4,2,hard,science,2
+9,Identify the output of: print(len('Hello World')),10,11,12,11,easy,coding,11
+10,Which is the largest planet in our solar system?,Earth,Jupiter,Mars,Saturn,easy,science,Jupiter
+11,What is the primary benefit of cloud computing?,High costs,Scalability,Limited storage,Local data Storage,medium,Cloud Computing,Scalability
+12,Which of the following is an example of an Infrastructure-as-a-Service (IaaS) provider?,AWS S3,Google Compute Engine,Microsoft Azure SQL Database,Google Docs,hard,Cloud Computing,Google Compute Engine
+13,What does SaaS stand for in cloud computing?,Software as a Service,System as a Service,Software as a Security,Security as a Service,easy,Cloud Computing,Software as a Service
+14,Which of the following is NOT a type of cloud deployment model?,Public cloud,Private cloud,Hybrid cloud,Secure cloud,easy,Cloud Computing,Secure cloud
+15,What is the main function of a hypervisor in cloud computing?,To store cloud data,To virtualize hardware,To monitor internet traffic,To handle security protocols,medium,Cloud Computing,To virtualize hardware
+16,Which of the following is a characteristic of a stack data structure?,FIFO (First In First Out),LIFO (Last In First Out),Random access,Fixed size,easy,coding,LIFO (Last In First Out)
+17,What is the time complexity of accessing an element in a hash table?,O(n),O(log n),O(1),O(n^2),medium,coding,O(1)
+18,Which algorithm is commonly used to find the shortest path in a graph?,Binary Search,QuickSort,Dijkstra's Algorithm,Merge Sort,medium,coding,Dijkstra's Algorithm
+19,print(2 ** 3 ** 2),512,64,128,256,hard,coding,512
+20,In which of the following cases is a linked list most preferred?,When quick access to elements by index is needed,When elements need to be inserted or deleted frequently,When memory is limited,When random access is necessary,medium,coding,When elements need to be inserted or deleted frequently
+21,What is the value of ? (Pi) to 3 decimal places?,3.142,3.141,3.143,3.14,easy,math,3.142
+22,What is the derivative of sin(x)?,cos(x),#NAME?,tan(x),#NAME?,medium,math,cos(x)
+23,"If a number is divisible by both 2 and 3, which of the following is true?",It is divisible by 5,It is divisible by 6,It is divisible by 9,It is divisible by 4,easy,math,It is divisible by 6
+24,What is the square root of 144?,14,12,16,13,easy,math,12
+25,The area of a circle is 154 square cm. What is the radius of the circle?,7 cm,14 cm,10 cm,6 cm,medium,math,7 cm
+26,"Which of the following is the next number in the series: 2, 6, 12, 20, ?",28,30,26,32,medium,logical reasoning,28
+27,"If two pencils cost $1.50, how much would 12 pencils cost?",$9.00,$7.50,$6.00,$10.00,easy,logical reasoning,$7.50
+28,"Which word does NOT belong in the following list? Dog, Cat, Rabbit, Truck",Dog ,Cat,Rabbit,Truck,easy,logical reasoning,Truck
+29,"If all roses are flowers and some flowers fade quickly, which of the following is true?",All roses fade quickly,Some roses fade quickly,No roses fade quickly,Some roses are not flowers,medium,logical reasoning,Some roses fade quickly
+30,"What comes next in the sequence: A, C, E, G, ?",I ,H,J,K,easy,logical reasoning,I 
+31,Who is the author of the famous book '1984'?,Aldous Huxley,George Orwell,J.K. Rowling,William Shakespeare,easy,GK,George Orwell
+32,What is the capital of Japan?,Beijing,Seoul,Tokyo,Kyoto,easy,GK,Tokyo
+33,Which planet is known as the Red Planet?,Earth,Venus,Mars,Jupiter,easy,GK,Mars
+34,What is the currency of the United Kingdom?,Euro,Pound,Dollar,Rupee,easy,GK,Pound
+35,Who painted the Mona Lisa?,Pablo Picasso,Leonardo da Vinci,Vincent van Gogh,Claude Monet,easy,GK,Leonardo da Vinci
+36,Which country was formerly known as Ceylon?,Singapore,Sri Lanka,Malaysia,Indonesia,medium,GK,Sri Lanka
+37,What is the largest ocean on Earth?,Atlantic Ocean,Indian Ocean,Arctic Ocean,Pacific Ocean,medium,GK,Pacific Ocean
+38,Which was the first country to grant women the right to vote?,United States,New Zealand,United Kingdom,Canada,hard,GK,New Zealand
+39,Who was the first human to travel into space?,Neil Armstrong,Yuri Gagarin,Buzz Aldrin,Alan Shepard,hard,GK,Yuri Gagarin
