@@ -5,8 +5,8 @@ import pickle
 
 app = Blueprint('app1', __name__)
 
-model = pickle.load(open("C:/Users/aksha/Desktop/Coding/Quizz ML/next_question/model.pkl", "rb"))
-label_encoder = pickle.load(open("C:/Users/aksha/Desktop/Coding/Quizz ML/next_question/label_encoder.pkl", "rb"))
+model = pickle.load(open("./next_question/model.pkl", "rb"))
+label_encoder = pickle.load(open("./next_question/label_encoder.pkl", "rb"))
 
 @app.route('/', methods=["POST"])
 def home():

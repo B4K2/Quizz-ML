@@ -6,9 +6,9 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 app = Blueprint('app2', __name__)
 
 
-model = pickle.load(open('C:/Users/aksha/Desktop/Coding/Quizz ML/question_pred/random_forest_model.pkl', 'rb'))
-vectorizer = pickle.load(open('C:/Users/aksha/Desktop/Coding/Quizz ML/question_pred/vectorizer.pkl', 'rb'))
-label_encoder = pickle.load(open('C:/Users/aksha/Desktop/Coding/Quizz ML/question_pred/label_encoder2.pkl', 'rb'))
+model = pickle.load(open('./question_pred/random_forest_model.pkl', 'rb'))
+vectorizer = pickle.load(open('./question_pred/vectorizer.pkl', 'rb'))
+label_encoder = pickle.load(open('./question_pred/label_encoder2.pkl', 'rb'))
 
 @app.route('/', methods=['POST'])
 def predict_difficulty():
