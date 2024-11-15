@@ -2,11 +2,17 @@ import numpy as np
 import pandas as pd
 from flask import Flask, request, jsonify, Blueprint
 import pickle
+import os
 
 app = Blueprint('app1', __name__)
 
-model = pickle.load(open("./next_question/model.pkl", "rb"))
-label_encoder = pickle.load(open("./next_question/label_encoder.pkl", "rb"))
+base_dir = os.path.dirname(os.path.abspath(__file__))
+model_path = os.path.join(base_dir, 'model.pkl')
+label_encoder_path = os.path.join(base_dir, 'label_encoder.pkl')
+
+
+model = pickle.load(open(model_path, "rb"))
+label_encoder = pickle.load(open(label_encoder_path, "rb"))
 
 @app.route('/', methods=["POST"])
 def home():
@@ -25,5 +31,3 @@ def home():
 
     return jsonify({"Prediction": list(decoded_pred)})
 
-if __name__ == "__main__":
-    app.run(debug=True)
