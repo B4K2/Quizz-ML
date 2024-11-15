@@ -4,6 +4,8 @@ from flask import Flask, request, jsonify, Blueprint
 import pickle
 import os
 
+print(np.__version__)
+
 app = Blueprint('app1', __name__)
 
 base_dir = os.path.dirname(os.path.abspath(__file__))

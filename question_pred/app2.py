@@ -1,8 +1,10 @@
 from flask import Flask, request, jsonify, Blueprint
+import numpy
 import pickle
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 import os
+
 
 app = Blueprint('app2', __name__)
 
