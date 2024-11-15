@@ -4,7 +4,6 @@ from flask import Flask, request, jsonify, Blueprint
 import pickle
 import os
 
-print(np.__version__)
 
 app = Blueprint('app1', __name__)
 
