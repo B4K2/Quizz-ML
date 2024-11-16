@@ -1,20 +1,86 @@
 # Adaptive Quiz API
 
-This project provides an adaptive quiz system with two main functionalities: predicting the difficulty level of multiple-choice questions and determining the next question's difficulty level based on a user's performance. The backend is built with Flask and uses machine learning models trained with `scikit-learn`.
+This repository hosts an adaptive quiz API built with Flask and machine learning. The API provides two main functionalities: predicting the difficulty level of multiple-choice questions and suggesting the difficulty of the next question based on user performance.
 
-## Features
+## Project Overview
 
-1. **Difficulty Prediction**: Predicts the difficulty level (easy, medium, hard) of a multiple-choice question based on the question text and options.
-2. **Next Question Prediction**: Determines the next question's difficulty level based on the user's recent quiz performance.
+This project is designed to make quizzes adaptive to user performance. It includes:
+
+1. **Difficulty Prediction**: Predicts the difficulty level of a question based on the text and options provided.
+2. **Next Question Prediction**: Determines the next question's difficulty based on user performance metrics, such as streak, time taken, and correctness.
+
+The machine learning models are trained using `scikit-learn`, and the API is deployed on Render.
+
+## API Endpoints
+
+The API is hosted at [https://quizz-ml.onrender.com](https://quizz-ml.onrender.com).
+
+### 1. Predict Next Question Difficulty
+
+- **Endpoint**: [https://quizz-ml.onrender.com/next](https://quizz-ml.onrender.com/next)
+- **Method**: `POST`
+- **Description**: This endpoint predicts the difficulty level of the next question based on the user's recent quiz performance.
+  
+  - **Expected JSON Input**:
+    ```json
+    [{
+      "user_streak": int,
+      "last_difficulty": "level(easy,medium,hard)",
+      "time_taken": int,
+      "is_correct": int(1,0)
+    }]
+    ```
+  - **Example Request**:
+    ```json
+    [{
+      "user_streak": 3,
+      "last_difficulty": "medium",
+      "time_taken": 45,
+      "is_correct": 1
+    }]
+    ```
+  - **Example Response**:
+    ```json
+    {
+      "Prediction": ["easy"]
+    }
+    ```
+
+### 2. Predict Question Difficulty
+
+- **Endpoint**: [https://quizz-ml.onrender.com/pred](https://quizz-ml.onrender.com/pred)
+- **Method**: `POST`
+- **Description**: This endpoint predicts the difficulty of a given multiple-choice question based on the question text and options.
+
+  - **Expected JSON Input**:
+    ```json
+    {
+      "question": "question(string)",
+      "options": ["option1", "option2", "option3", "option4"]
+    }
+    ```
+  - **Example Request**:
+    ```json
+    {
+      "question": "What is the capital of France?",
+      "options": ["Paris", "London", "Berlin", "Madrid"]
+    }
+    ```
+  - **Example Response**:
+    ```json
+    {
+      "difficulty": "easy"
+    }
+    ```
 
 ## Project Structure
 
-- `app1`: Flask blueprint for predicting the next question difficulty level based on user performance.
-- `app2`: Flask blueprint for predicting the difficulty of a multiple-choice question.
-- `model.pkl`: Model for predicting the next question difficulty level.
-- `random_forest_model.pkl`: Model for predicting question difficulty based on question text and options.
-- `label_encoder.pkl` & `label_encoder2.pkl`: Encoders to transform labels in each model.
-- `vectorizer.pkl`: TF-IDF vectorizer for transforming question text and options.
+- `app1`: Contains Flask blueprint and model for predicting the next question difficulty based on user performance.
+- `app2`: Contains Flask blueprint and model for predicting question difficulty based on question text and options.
+- `model.pkl`: Model for next question difficulty prediction.
+- `random_forest_model.pkl`: Model for question difficulty prediction.
+- `label_encoder.pkl` & `label_encoder2.pkl`: Encoders for transforming categorical labels in both models.
+- `vectorizer.pkl`: TF-IDF vectorizer for processing question and options text.
 
 ## Getting Started
 
@@ -23,15 +89,9 @@ This project provides an adaptive quiz system with two main functionalities: pre
 - Python 3.x
 - `pip` (Python package installer)
 
-### Libraries Used
+### Installing Dependencies
 
-- Flask==3.0.3
-- numpy==2.1.3
-- pandas==2.2.3
-- scikit-learn==1.5.2
-- gunicorn==23.0.0
-
-Install these dependencies using:
+Install the required libraries using:
 
 ```bash
 pip install -r requirements.txt
