@@ -42,7 +42,7 @@ The API is hosted at [https://quizz-ml.onrender.com](https://quizz-ml.onrender.c
   - **Example Response**:
     ```json
     {
-      "Prediction": ["easy"]
+      "Prediction": ["hard"]
     }
     ```
 
