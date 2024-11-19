@@ -21,13 +21,14 @@ label_encoder = pickle.load(open(label_encoder_path, 'rb'))
 @app.route('/', methods=['POST'])
 def predict_difficulty():
     data = request.json
-    question = data.get('question')
-    options = data.get('options')
+    question = data.get('question_text')
+    option_1 = data.get('option_1')
+    option_2 = data.get('option_2')
+    option_3 = data.get('option_3')
+    option_4 = data.get('option_4')
     
-    if not question or not options or len(options) != 4:
-        return jsonify({"error": "Invalid input. Provide a question and exactly four options."}), 400
     
-    options_combined = question + ' ' + ' '.join(options)
+    options_combined = question + ' ' + option_1 + ' ' + option_2 + ' ' + option_3 + ' ' + option_4
     
     X_new = vectorizer.transform([options_combined])
     
