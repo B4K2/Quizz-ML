@@ -55,15 +55,21 @@ The API is hosted at [https://quizz-ml.onrender.com](https://quizz-ml.onrender.c
   - **Expected JSON Input**:
     ```json
     {
-      "question": "question(string)",
-      "options": ["option1", "option2", "option3", "option4"]
+    "question_text": "question(string)",
+    "option_1": "option",
+    "option_2": "option",
+    "option_3": "option",
+    "option_4": "option"
     }
     ```
   - **Example Request**:
     ```json
     {
-      "question": "What is the capital of France?",
-      "options": ["Paris", "London", "Berlin", "Madrid"]
+    "question_text": "Who was the first human to travel into space?",
+    "option_1": "Neil Armstrong",
+    "option_2": "Yuri Gagarin",
+    "option_3": "Buzz Aldrin",
+    "option_4": "Alan Shepard"
     }
     ```
   - **Example Response**:
