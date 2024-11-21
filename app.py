@@ -10,4 +10,4 @@ app.register_blueprint(app2, url_prefix='/pred')
 app.register_blueprint(app3, url_prefix='/sum')
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
