@@ -3,6 +3,7 @@ from sklearn.preprocessing import StandardScaler
 import pandas as pd
 import pickle
 
+
 # Load data
 data = pd.read_csv('updated_fabricated_quiz_data.csv')
 df = pd.DataFrame(data)
