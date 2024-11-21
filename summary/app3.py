@@ -4,7 +4,11 @@ from flask import Flask, request, jsonify, Blueprint
 import pickle
 import os
 import google.generativeai as genai
-from dotenv import load_dotenv
+from dotenv import load_dotenv,find_dotenv
+
+dotenv = find_dotenv()
+
+load_dotenv(dotenv)
 
 
 # Initialize the Flask Blueprint
@@ -20,7 +24,7 @@ model = pickle.load(open(model_path, "rb"))
 scaler = pickle.load(open(scaler_path, "rb"))
 
 # Configure Google Gemini API
-genai.configure(api_key="AIzaSyA5_1uvb5-fhZelP-DZkzvCW0TDFC0RByg")  # Replace with your actual API key
+genai.configure(api_key=os.getenv("API_KEY"))  # Replace with your actual API key
 
 def generate_gemini_feedback(username, metrics, cluster_feedback, avg_feedback):
     """
