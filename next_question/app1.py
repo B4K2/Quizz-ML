@@ -20,6 +20,14 @@ def home():
     json_ = request.json
     query_df = pd.DataFrame(json_)
 
+    if "username" in query_df.columns:
+        try:
+            # Attempt to drop 'previous_questions' column
+            query_df = query_df.drop(columns=["username"])
+        except KeyError as e:
+            # If the column is not found, catch the exception and handle it
+            return jsonify({"error": f"Error in dropping 'username': {str(e)}"}), 400
+
     if "previous_questions" in query_df.columns:
         try:
             # Attempt to drop 'previous_questions' column
