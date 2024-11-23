@@ -21,40 +21,22 @@ def home():
     json_ = request.json
     query_df = pd.DataFrame(json_)
 
-    if "user_id" in query_df.columns:
-        try:
-            # Attempt to drop 'previous_questions' column
-            query_df = query_df.drop(columns=["user_id"])
-        except KeyError as e:
-            # If the column is not found, catch the exception and handle it
-            return jsonify({"error": f"Error in dropping 'user_id': {str(e)}"}), 400
-
-    if "previous_questions" in query_df.columns:
-        try:
-            # Attempt to drop 'previous_questions' column
-            query_df = query_df.drop(columns=["previous_questions"])
-        except KeyError as e:
-            # If the column is not found, catch the exception and handle it
-            return jsonify({"error": f"Error in dropping 'previous_questions': {str(e)}"}), 400
+    # Define required columns for the model
+    required_columns = ["user_streak", "last_difficulty", "time_taken", "is_correct"]
     
-    if "score" in query_df.columns:
-        try:
-            # Attempt to drop 'previous_questions' column
-            query_df = query_df.drop(columns=["score"])
-        except KeyError as e:
-            # If the column is not found, catch the exception and handle it
-            return jsonify({"error": f"Error in dropping 'score': {str(e)}"}), 400
+    # Filter DataFrame to keep only required columns
+    query_df = query_df[[col for col in query_df.columns if col in required_columns]]
 
-
+    # Handle encoding for 'last_difficulty' if it exists in the data
     if "last_difficulty" in query_df.columns:
         try:
             query_df["last_difficulty"] = label_encoder.transform(query_df["last_difficulty"])
         except ValueError as e:
             return jsonify({"error": f"Error in transforming 'last_difficulty': {str(e)}"}), 400
 
+    # Make predictions
     pred = model.predict(query_df)
-    pred = [int(x) for x in pred]
-    decoded_pred = label_encoder.inverse_transform(pred)
+    decoded_pred = label_encoder.inverse_transform([int(x) for x in pred])
 
     return jsonify({"Prediction": list(decoded_pred)})
 
