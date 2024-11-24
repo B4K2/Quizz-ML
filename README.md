@@ -137,8 +137,15 @@ The API is hosted at [https://quizz-ml.onrender.com](https://quizz-ml.onrender.c
           "username": "john_doe",
           "analysis": "Your score is above average, with a strong streak. Work on reducing errors for even higher accuracy."
         }
-      ]
+      ],
+      "graph": "more than 70,000+words"
     }
+    ```
+
+    To display the graph in HTML, use the following code:
+
+    ```html
+    <img src="data:image/png;base64,{{ graph }}">
     ```
 
 ## Project Structure
