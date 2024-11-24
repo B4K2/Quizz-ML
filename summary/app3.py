@@ -7,6 +7,9 @@ import google.generativeai as genai
 from dotenv import load_dotenv, find_dotenv
 import logging
 from flask_cors import CORS
+import matplotlib.pyplot as plt
+import base64
+from io import BytesIO
 
 # Load environment variables
 dotenv = find_dotenv()
@@ -66,6 +69,63 @@ def generate_gemini_feedback(username, metrics, cluster_feedback, avg_feedback):
     except Exception as e:
         logger.error(f"Error generating feedback: {str(e)}")
         return f"Error generating feedback: {str(e)}"
+    
+def create_graphs(user_data, averages):
+    """
+    Create multiple graphs with grouped bars (one for user, one for average) 
+    and return the base64-encoded PNG image.
+    """
+    fig, axs = plt.subplots(2, 2, figsize=(12, 10))  # 2x2 grid of graphs
+    user = user_data[0]  # Assuming single-user data; adapt if necessary
+    
+    # Color-changing logic
+    def get_color(user_value, avg_value, reverse=False):
+        if reverse:
+            return 'red' if user_value > avg_value else 'green'
+        return 'green' if user_value >= avg_value else 'red'
+
+    # 1. Score vs Average Score
+    axs[0, 0].bar(['User Score', 'Average Score'], 
+                  [user['score'], averages['average_score']],
+                  color=[get_color(user['score'], averages['average_score']), 'blue'])
+    axs[0, 0].set_title('Score Comparison')
+    axs[0, 0].set_ylabel('Score')
+
+    # 2. Correct Answers vs Average Correct Answers
+    axs[0, 1].bar(['User Correct', 'Average Correct'], 
+                  [user['correct_answers'], averages['average_correct_answers']],
+                  color=[get_color(user['correct_answers'], averages['average_correct_answers']), 'blue'])
+    axs[0, 1].set_title('Correct Answers Comparison')
+    axs[0, 1].set_ylabel('Correct Answers')
+
+    # 3. Incorrect Answers vs Average Incorrect Answers (reversed logic)
+    axs[1, 0].bar(['User Incorrect', 'Average Incorrect'], 
+                  [user['incorrect_answers'], averages['average_incorrect_answers']],
+                  color=[get_color(user['incorrect_answers'], averages['average_incorrect_answers'], reverse=True), 'blue'])
+    axs[1, 0].set_title('Incorrect Answers Comparison')
+    axs[1, 0].set_ylabel('Incorrect Answers')
+
+    # 4. Streak vs Average Streak
+    axs[1, 1].bar(['User Streak', 'Average Streak'], 
+                  [user['streak'], averages['average_streak']],
+                  color=[get_color(user['streak'], averages['average_streak']), 'blue'])
+    axs[1, 1].set_title('Streak Comparison')
+    axs[1, 1].set_ylabel('Streak')
+
+    # Adjust layout
+    plt.tight_layout()
+
+    # Save to a BytesIO object
+    img_stream = BytesIO()
+    plt.savefig(img_stream, format='png')
+    img_stream.seek(0)  # Rewind the stream to the beginning
+    
+    # Convert to base64
+    img_base64 = base64.b64encode(img_stream.read()).decode('utf-8')
+    return img_base64
+
+
+
 
 @app.route('/', methods=["POST"])
 def home():
@@ -143,8 +203,10 @@ def home():
 
             feedback.append(user_feedback)
             analysis.append({"username": row['username'], "analysis": avg_feedback_str})
+
+        graph_base64 = create_graphs(user_data, averages)
         
-        return jsonify({"feedback": feedback, "analysis": analysis})
+        return jsonify({"feedback": feedback, "analysis": analysis, "graph": graph_base64})
     
     except Exception as e:
         logger.error(f"Error processing request: {str(e)}")
