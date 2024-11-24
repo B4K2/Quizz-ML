@@ -4,9 +4,11 @@ import pickle
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 import os
-
+from flask_cors import CORS
 
 app = Blueprint('app2', __name__)
+
+CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
 
 base_dir = os.path.dirname(os.path.abspath(__file__))
 model_path = os.path.join(base_dir, 'random_forest_model.pkl')
