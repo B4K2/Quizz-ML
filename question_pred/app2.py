@@ -8,7 +8,7 @@ from flask_cors import CORS
 
 app = Blueprint('app2', __name__)
 
-CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
+CORS(app, resources={r"/pred": {"origins": "*"}}, supports_credentials=True)
 
 base_dir = os.path.dirname(os.path.abspath(__file__))
 model_path = os.path.join(base_dir, 'random_forest_model.pkl')
@@ -22,6 +22,8 @@ label_encoder = pickle.load(open(label_encoder_path, 'rb'))
 
 @app.route('/', methods=['POST'])
 def predict_difficulty():
+    if request.method == "OPTIONS":
+        return '', 200
     data = request.json
     question = data.get('question_text')
     option_1 = data.get('option_1')
