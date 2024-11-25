@@ -47,21 +47,27 @@ def calculate_averages(all_users):
 
     return averages
 
+
 def generate_gemini_feedback(username, metrics, cluster_feedback, avg_feedback):
+    """
+    Generate feedback using Google Gemini API.
+    """
     prompt = f"""
-    Provide feedback for quiz participant {username}.
+    Provide small paragraph type feedback for a quiz participant named {username}.
     Metrics:
     - Score: {metrics['score']}
     - Correct Answers: {metrics['correct_answers']}
     - Incorrect Answers: {metrics['incorrect_answers']}
     - Streak: {metrics['streak']}
     - Accuracy: {metrics['accuracy']:.2f}
-    
+
     Cluster Feedback:
     {cluster_feedback}
 
     Comparison to Averages:
     {avg_feedback}
+
+    Feedback should highlight strengths, suggest improvement areas, and remain encouraging.
     """
     
     try:
